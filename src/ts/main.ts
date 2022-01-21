@@ -8,7 +8,4 @@ myBtn.addEventListener("click", function () {
 
     let service = new Service(inputValue)
 
-    console.log(service);
-    
-
 });

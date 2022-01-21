@@ -1,4 +1,4 @@
 export interface Iservice {
 
-    getData(string): any
+    getData(string): object
 }

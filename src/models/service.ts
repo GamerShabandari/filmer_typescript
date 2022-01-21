@@ -8,18 +8,15 @@ export class Service implements Iservice {
 
     }
 
-    getData(movie: string): any {
+    getData(movie: string): object {
 
         const containerDiv = document.getElementById("containerDiv");
 
         containerDiv.innerHTML = "";
 
-        fetch("http://www.omdbapi.com/?t=" + movie + "&apikey=5ed1c386").then(response => response.json())
+        let thisMovie = fetch("http://www.omdbapi.com/?t=" + movie + "&apikey=5ed1c386").then(response => response.json())
             .then(data => {
-                const thisMovie = data
-                console.log(thisMovie);
-
-                console.log(movie);
+                thisMovie = data
 
                 let movieContainer = document.createElement("div");
                 let movieTitle = document.createElement("h1");
@@ -34,5 +31,6 @@ export class Service implements Iservice {
                 containerDiv.append(movieContainer);
 
             })
+        return thisMovie;
     }
 }
