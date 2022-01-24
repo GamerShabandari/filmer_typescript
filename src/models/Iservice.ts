@@ -1,4 +1,4 @@
 export interface Iservice {
 
-    getData(string): object
+    getData(string): void
 }

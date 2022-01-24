@@ -1,4 +1,5 @@
 import { Iservice } from "./Iservice";
+import { renderPage } from "./renderPage";
 
 export class Service implements Iservice {
 
@@ -8,29 +9,23 @@ export class Service implements Iservice {
 
     }
 
-    getData(movie: string): object {
+    getData(movie: string): void {
 
-        const containerDiv = document.getElementById("containerDiv");
+        //const containerDiv = document.getElementById("containerDiv");
+        // let searchContainer = document.createElement("div");
+        // searchContainer.id = "searchContainer";
+        // containerDiv.append(searchContainer);
+        
 
-        containerDiv.innerHTML = "";
+        // searchContainer.innerHTML = "";
 
-        let thisMovie = fetch("http://www.omdbapi.com/?t=" + movie + "&apikey=5ed1c386").then(response => response.json())
+        fetch("http://www.omdbapi.com/?i=tt3896198&apikey=5ed1c386&s=" + movie).then(response => response.json())
             .then(data => {
-                thisMovie = data
+                let matchedMovies = data.Search
 
-                let movieContainer = document.createElement("div");
-                let movieTitle = document.createElement("h1");
-                let movieYear = document.createElement("h2");
-                let moviePoster = document.createElement("img");
-
-                movieTitle.innerText = data.Title;
-                movieYear.innerText = data.Year;
-                moviePoster.src = data.Poster;
-
-                movieContainer.append(movieTitle, movieYear, moviePoster);
-                containerDiv.append(movieContainer);
+                renderPage(matchedMovies);
 
             })
-        return thisMovie;
+
     }
 }
